@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+/* ─── CSS Custom Properties ─────────────────────────────────────── */
+:root {
+  --bg-base: hsl(240, 50%, 98%);
+  --bg-elevated: hsl(240, 30%, 96%);
+  --bg-overlay: hsl(240, 20%, 94%);
+  --brand: hsl(262, 80%, 50%);
+  --brand-glow: hsla(262, 80%, 50%, 0.15);
+  --accent: hsl(320, 75%, 45%);
+  --accent-glow: hsla(320, 75%, 45%, 0.1);
+  --border: rgba(0, 0, 0, 0.08);
+  --border-subtle: rgba(0, 0, 0, 0.04);
+  --text-primary: hsl(240, 10%, 15%);
+  --text-secondary: hsl(240, 10%, 45%);
+  --text-muted: hsl(240, 5%, 65%);
+}
+
+.dark {
+  --bg-base: hsl(240, 15%, 6%);
+  --bg-elevated: hsl(240, 13%, 9%);
+  --bg-overlay: hsl(240, 12%, 12%);
+  --brand: hsl(261, 75%, 55%);
+  --brand-glow: hsla(261, 75%, 55%, 0.35);
+  --accent: hsl(330, 70%, 50%);
+  --accent-glow: hsla(330, 70%, 50%, 0.25);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.04);
+  --text-primary: hsl(240, 15%, 95%);
+  --text-secondary: hsl(240, 10%, 65%);
+  --text-muted: hsl(240, 8%, 45%);
+}
+
+/* ─── Reset & Base ───────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── Custom Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.22); }
+
+/* ─── Selection ──────────────────────────────────────────────────── */
+::selection {
+  background: hsla(261, 75%, 55%, 0.35);
+  color: white;
+}
+
+/* ─── Glass Utility ──────────────────────────────────────────────── */
+.glass {
+  background: var(--bg-overlay);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+}
+
+.glass-strong {
+  background: var(--bg-elevated);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border);
+}
+
+.glass-card {
+  background: var(--bg-elevated);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+}
+
+/* ─── Gradient Text ──────────────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, hsl(261, 75%, 70%) 0%, hsl(330, 70%, 65%) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-subtle {
+  background: linear-gradient(135deg, hsl(240, 15%, 95%) 0%, hsl(240, 10%, 70%) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Glow Effects ───────────────────────────────────────────────── */
+.glow-brand {
+  box-shadow: 0 0 20px var(--brand-glow), 0 0 50px hsla(261, 75%, 55%, 0.1);
+}
+
+.glow-accent {
+  box-shadow: 0 0 20px var(--accent-glow), 0 0 50px hsla(330, 70%, 50%, 0.1);
+}
+
+/* ─── Shimmer Loading ────────────────────────────────────────────── */
+.shimmer {
+  background: linear-gradient(105deg,
+    rgba(255,255,255,0.0) 40%,
+    rgba(255,255,255,0.08) 50%,
+    rgba(255,255,255,0.0) 60%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2.5s linear infinite;
+}
+
+/* ─── Noise Texture ──────────────────────────────────────────────── */
+.noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Animated Orb Background ────────────────────────────────────── */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  animation: float 8s ease-in-out infinite;
+}
+
+.orb-brand {
+  background: radial-gradient(circle, hsla(261, 75%, 55%, 0.3) 0%, transparent 70%);
+}
+
+.orb-accent {
+  background: radial-gradient(circle, hsla(330, 70%, 55%, 0.25) 0%, transparent 70%);
+  animation-delay: -4s;
+}
+
+/* ─── Scrollable chat area ───────────────────────────────────────── */
+.chat-scroll {
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+/* ─── Typing indicator animation ─────────────────────────────────── */
+@keyframes typingBounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+  40% { transform: translateY(-6px); opacity: 1; }
+}
+.typing-dot {
+  animation: typingBounce 1.4s ease-in-out infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* ─── Prose / Markdown ───────────────────────────────────────────── */
+.prose-ai {
+  line-height: 1.7;
+  color: hsl(240, 10%, 85%);
+}
+.prose-ai h1, .prose-ai h2, .prose-ai h3 {
+  color: hsl(240, 15%, 95%);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  margin-top: 1.25em;
+  margin-bottom: 0.5em;
+}
+.prose-ai ul, .prose-ai ol {
+  padding-left: 1.25rem;
+  margin: 0.75em 0;
+}
+.prose-ai li { margin: 0.3em 0; }
+.prose-ai code {
+  background: rgba(255,255,255,0.08);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 0.875em;
+  color: hsl(261, 75%, 80%);
+}
+.prose-ai strong { color: white; font-weight: 600; }
+
+/* ─── Button Animations ──────────────────────────────────────────── */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+.btn-primary:hover::after { transform: translateX(100%); }
+.btn-primary:active { transform: scale(0.97); }
