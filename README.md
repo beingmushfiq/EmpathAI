@@ -2,7 +2,7 @@
 
 **EmpathAI** is a high-fidelity, empathetic AI companion and assistant platform designed to provide a supportive, long-term relationship for users. Built with a "Cyberpunk Elegance" aesthetic, it combines cutting-edge AI (GPT-4o), real-time communication (LiveKit), and a sophisticated memory system to create an AI that truly feels like a companion.
 
-![Luna Hero](web/public/icon.png)
+![Luna Hero](web/app/icon.png)
 
 ## ✨ Features
 
